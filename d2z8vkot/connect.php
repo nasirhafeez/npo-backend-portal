@@ -3,26 +3,6 @@
 require 'header.php';
 include 'config.php';
 
-$myVideoDir = '../assets/media';
-$extension = 'mp4';
-$videoFile = false;
-$pseudoDir = scandir($myVideoDir);
-$myitems = array();
-foreach($pseudoDir as $item) {
-  if ( $item != '..' && $item != '.' && !is_dir($item) ) {
-    $ext = preg_replace('#^.*\.([a-zA-Z0-9]+)$#', '$1', $item);
-    if ( $ext == $extension ) {
-      $videoFile = $item;
-      if ( $videoFile <> "" ) {
-        array_push($myitems, $videoFile);
-      }
-    }
-  }
-}
-
-$rand_item = array_rand($myitems, 1);
-$video_name = $myitems[$rand_item];
-
 $mac = $_SESSION["id"];
 $apmac = $_SESSION["ap"];
 $method = $_SESSION["method"];
@@ -31,7 +11,6 @@ $lname = $_SESSION['lname'];
 $phone = $_SESSION['phone'];
 $email = $_SESSION['email'];
 $last_updated = date("Y-m-d H:i:s");
-$video_count = $_SESSION["video_count"] + 1;
 
 $controlleruser = $_SERVER['CONTROLLER_USER'];
 $controllerpassword = $_SERVER['CONTROLLER_PASSWORD'];
@@ -58,15 +37,14 @@ CREATE TABLE IF NOT EXISTS `$table_name` (
     `apmac` varchar(17) NOT NULL,
     `method` varchar(10) NOT NULL,
     `last_updated` datetime NOT NULL,
-    `video_count` int(6) NOT NULL,
     PRIMARY KEY (`id`),
     UNIQUE KEY `mac` (`mac`)
 )");
 
 if ($_SESSION['user_type'] == "new") {
-    mysqli_query($con, "INSERT INTO `$table_name` (phone, email, first_name, last_name, mac, apmac, method, last_updated, video_count) VALUES ('$phone','$email','$fname','$lname','$mac', '$apmac', '$method', '$last_updated', '$video_count')");
+    mysqli_query($con, "INSERT INTO `$table_name` (phone, email, first_name, last_name, mac, apmac, method, last_updated) VALUES ('$phone','$email','$fname','$lname','$mac', '$apmac', '$method', '$last_updated')");
 } else {
-    mysqli_query($con, "UPDATE `$table_name` SET last_updated = '$last_updated', video_count = '$video_count' WHERE mac = '$mac'");
+    mysqli_query($con, "UPDATE `$table_name` SET last_updated = '$last_updated' WHERE mac = '$mac'");
 }
 
 mysqli_close($con);
