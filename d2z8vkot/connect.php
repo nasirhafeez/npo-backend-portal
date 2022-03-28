@@ -75,42 +75,13 @@ mysqli_close($con);
         </figure>
     </div>
 
-    <div class="main">
-        <seection class="section">
-            <div class="centered_text">
-                <div id="countdown"></div>
-            </div>
-            <br>
-            <div class="video_wrap">
-                <video controls autoplay>
-                    <source src="../assets/media/<?php echo htmlspecialchars($video_name); ?>" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </seection>
+   <div class="main">-->
+       <seection class="section">
+           <div id="margin_zero" class="content has-text-centered is-size-6">Thanks, you are now </div>
+           <div id="margin_zero" class="content has-text-centered is-size-6">authorized on WiFi</div>
+       </seection>
     </div>
 
-<!--    <div class="main">-->
-<!--        <seection class="section">-->
-<!--            <div id="margin_zero" class="content has-text-centered is-size-6">Thanks, you are now </div>-->
-<!--            <div id="margin_zero" class="content has-text-centered is-size-6">authorized on WiFi</div>-->
-<!--        </seection>-->
-<!--    </div>-->
-
 </div>
-
-<script type="text/javascript">
-    var timeleft = 45;
-    var downloadTimer = setInterval(function(){
-        if(timeleft <= 0){
-            clearInterval(downloadTimer);
-        } else {
-            document.getElementById("countdown").innerHTML = "Browsing will start immediately after the video in " + timeleft + "s";
-        }
-        timeleft -= 1;
-    }, 1000);
-</script>
-
 </body>
-
 </html>
