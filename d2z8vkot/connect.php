@@ -1,7 +1,6 @@
 <?php
 
 require 'header.php';
-include 'config.php';
 
 $mac = $_SESSION["id"];
 $apmac = $_SESSION["ap"];
@@ -36,8 +35,6 @@ if ($user_type == "new") {
     "venue_id" => $venue_id
   ];
 }
-
-//$last_updated = date("Y-m-d H:i:s");
 
 $controlleruser = $_SERVER['CONTROLLER_USER'];
 $controllerpassword = $_SERVER['CONTROLLER_PASSWORD'];
